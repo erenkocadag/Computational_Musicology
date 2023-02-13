@@ -1,6 +1,22 @@
-# Computational_Musicology
+# Computational Musicology
 A repository used as a course portfolio for the Computational Musicology course taught at the University of Amsterdam. 
-PLEASE DO NOT SHOW THIS PORTFOLIO IN CLASS
 
-A description of my corpus:
-<TODO>
+### PLEASE DO NOT SHOW THIS PORTFOLIO IN CLASS
+
+# A description of my corpus:
+My corpus consists of playlists made by Spotify that revolve around the arabesk music genre. Arabesk is a popular Turkish music genre that emerged in the 1960s and blends traditional Turkish music with elements of Middle Eastern and Southeast European music. The first playlist consists of Arabesk music that is considered more old-school and classic. It's titled 'Babalar'. The second and third playlists are of subgenres of Arabesk music that emerged decades after Arabesk music arrived. The genres are Arabesk pop and Arabesk rap.  Their respective playlists are "Besk Pop" and "Besk Rap".
+
+I chose this corpus, because I don't know enough about this genre and want to learn more. What's interesting about Arabesk is that it has changed tremendously throughout the years.
+
+My main interest of points to compare are how the chosen subgenres are similar or different to classic Arabesk music. It could also be interesting to see the differences between songs from each decade.
+
+I believe that the playlists cover their genres fairly well, as Spotify has created them with the purpose of doing so. A strength would be the variety in artists that are featured in the playlists. A weakness could be the size of the corpus.
+
+A typical Arabesk track could be Unutamadım (Kaç Kadeh Kırıldı) by Müslüm Gürses, due to the melancholic tone of the song. A track that could be quite atypical might be Alev Alev by Hayat, as part of it is in German and does not share the typical sentiment of older Arabesk songs. Thus, it makes sense for it to be in the Besk rap playlist.
+
+## Links to the playlists:
+https://open.spotify.com/playlist/37i9dQZF1DX9azIhpBmNbd?si=6db51b6addd848c0
+
+https://open.spotify.com/playlist/37i9dQZF1DXciCKvzkUxfS?si=c9b1a17357b9411d
+
+https://open.spotify.com/playlist/37i9dQZF1DXduWUvte9ZYi?si=81f7a3ba11a4430b
