@@ -48,7 +48,7 @@ merged %>%
     geom_col() +
     geom_text(aes(label=round(mean_valence, 2)), vjust = -0.5) +
     coord_cartesian(ylim = c(0,1)) +
-    labs(x = "Playlist", y = " Mean valence", title = "There difference in the valence of the playlists is small") +
+    labs(x = "Playlist", y = " Mean valence", title = "The difference in the valence of the playlists is small") +
     theme_bw() + 
     theme( text = element_text(family = "Inter"),
            legend.position = 'none',
