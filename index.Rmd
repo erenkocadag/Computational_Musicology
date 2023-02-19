@@ -29,8 +29,8 @@ A typical Arabesk track could be Unutamadım (Kaç Kadeh Kırıldı) by Müslüm
 
 ## First Visualisations
 
-![](https://raw.githubusercontent.com/erenkocadag/Computational_Musicology/main/Plots/acous.png)
-![](https://raw.githubusercontent.com/erenkocadag/Computational_Musicology/main/Plots/valence.png)
+![](https://raw.githubusercontent.com/erenkocadag/Computational_Musicology/main/Plots/acous.png) ![](https://raw.githubusercontent.com/erenkocadag/Computational_Musicology/main/Plots/valence.png)
+
 ### Links to the playlists:
 
 All data that is used in these visualisations are from the Spotify API with which I gathered information about the following playlists:
