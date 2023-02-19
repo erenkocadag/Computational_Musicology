@@ -29,7 +29,7 @@ A typical Arabesk track could be Unutamadım (Kaç Kadeh Kırıldı) by Müslüm
 
 ## First Visualisations
 
-![](/Plots/acous.png)
+![](https://raw.githubusercontent.com/erenkocadag/Computational_Musicology/main/Plots/acous.png)
 
 ### Links to the playlists:
 
