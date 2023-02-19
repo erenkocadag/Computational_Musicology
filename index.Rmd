@@ -1,7 +1,6 @@
 ---
 title: "Comparisons between classic Arabesk music and some subgenres"
 author: "Eren Kocadag"
-date: "20-02-2023"
 output: html_document
 ---
 
@@ -29,7 +28,13 @@ A typical Arabesk track could be Unutamadım (Kaç Kadeh Kırıldı) by Müslüm
 
 ## First Visualisations
 
-![](https://raw.githubusercontent.com/erenkocadag/Computational_Musicology/main/Plots/acous.png) ![](https://raw.githubusercontent.com/erenkocadag/Computational_Musicology/main/Plots/valence.png)
+![](https://raw.githubusercontent.com/erenkocadag/Computational_Musicology/main/Plots/acous.png)
+
+The scatter plot above plots the acousticness of the playlists on the Y-axis and the danceability of the playlists on the X-axis. This is done in three subplots for each of the playlists. When looking at the pattern of the dots, it becomes clear that classic Arabesk music tends to have a lower danceability rating and a higher acousticness rating in comparison to the two subgenres (Arabesk Pop and Arabesk Rap). This shows some of the differences of the more recent music in the subgenres in comparison to the older music.
+
+![](https://raw.githubusercontent.com/erenkocadag/Computational_Musicology/main/Plots/valence2.png)
+
+The plot above shows the mean valence for each of the playlists used. The difference between the values are actually much smaller than I expected them to be. Prior to this plot, I would have expected the classic Arabesk playlist (Babalar) to have somewhat of a lower valence than the other two playlists. Perhaps the mean was not the best property to take of the valence feature, due to its sensitivity to outliers. For next week I might come back to this with a different approach.
 
 ### Links to the playlists:
 
