@@ -58,6 +58,7 @@ merged %>%
 
 ggplot(merged, aes(danceability, acousticness)) +
   geom_point() +
+  # geom_smooth() +
   coord_cartesian(ylim = c(0,1), xlim = c(0,1)) +
   theme_bw() +
   theme(
