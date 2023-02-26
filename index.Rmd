@@ -141,6 +141,31 @@ Column {data-width=350}
 ***
 * The plot above shows the mean valence for each of the playlists used. The difference between the values are actually much smaller than I expected them to be. Prior to this plot, I would have expected the classic Arabesk playlist (Babalar) to have somewhat of a lower valence than the other two playlists. Perhaps the mean was not the best property to take of the valence feature, due to its sensitivity to outliers. For next week I might come back to this with a different approach.
 
+Popularity {data-navmenu=Visualisations}
+==================================================
+
+Column {data-width=500}
+--------------------------------------------------
+### Plot 1
+
+```{r echo=FALSE}
+ggplot(merged, aes(tempo, track.popularity, color=playlist_name)) +
+  geom_boxplot(notch=TRUE) +
+  facet_wrap(~playlist_name) +
+  labs(x = "Tempo", y = "Track popularity", title = "Older Arabesk music currently is less popular than the subgenres") +
+  theme_bw() +
+  theme(
+    legend.position = 'none',
+    text = element_text(family = "Inter"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank())
+```
+
+Column {data-width=500}
+-------------------------------------------------
+***
+* In this plot it the popularity of the tracks in each playlist are used to create boxplots. When comparing the boxplots, it becomes clear that these days the tracks from the older playlist are less popular than the subgenres which consists of newer music. Partially this makes sense, as newer music might be more relevant and perhaps is made to fit an audience of this era. However, I would have expected the "Babalar" playlist to be a bit more popular, because it contains music from artists that are highly respected in Turkey (Such as Müslüm Gürses, Orhan Gencebay and Ferdi Tayfur). When using ggplotly to make this plot web friendly, the boxplot no longer was being plotted. This is an issue I hope to resolve next week.
+
 Conclusion
 =================================================
 I think I need to explore my corpus a bit more and gain more insights from it before I can draw definitive conclusions.  

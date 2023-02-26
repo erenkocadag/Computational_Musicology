@@ -3,6 +3,7 @@ library(tidyverse)
 library(spotifyr)
 library(ggplot2)
 library(showtext)
+library(plotly)
 
 font_add_google("Inter", "Inter")
 showtext_auto()
@@ -67,4 +68,17 @@ ggplot(merged, aes(danceability, acousticness)) +
     panel.grid.minor = element_blank()) +
   labs(x = "Danceability", y = "Acousticness", title = "Classic Arabesk songs seem to be more acoustic and less danceable than the two subgenres") +
   facet_wrap(~playlist_name)
+
+p <- ggplot(merged, aes(tempo, track.popularity, color=playlist_name)) +
+        geom_boxplot(notch=TRUE) +
+        labs(x = "Tempo", y = "Track popularity", title = "Older Arabesk music currently is less popular than the subgenres") +
+        theme_bw() +
+        theme(
+          legend.position = 'none',
+          text = element_text(family = "Inter"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank()) +
+        facet_wrap(~playlist_name)
+
+ggplotly(p)
          
