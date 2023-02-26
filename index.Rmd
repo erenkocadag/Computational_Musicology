@@ -1,18 +1,68 @@
 ---
 title: "Comparisons between classic Arabesk music and some subgenres"
 author: "Eren Kocadag"
-output: html_document
+output: 
+  flexdashboard::flex_dashboard:
+          storyboard: true
+          self_contained: false
 ---
 
 ```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(spotifyr)
+library(ggplot2)
+library(showtext)
+library(plotly)
+
+# getting access to the spotify API
+Sys.setenv(SPOTIFY_CLIENT_ID = 'c165e1d0717c4bc1a4b10fad65d016e5')
+Sys.setenv(SPOTIFY_CLIENT_SECRET = '7771634e58dd4c379280db7d30afbf25')
+
+access_token <- get_spotify_access_token()
+
+font_add_google("Inter", "Inter")
+showtext_auto()
+
+# retrieving the audio features of my corpus
+baba <- get_playlist_audio_features("", "37i9dQZF1DX9azIhpBmNbd")
+beskr <- get_playlist_audio_features("", "37i9dQZF1DXciCKvzkUxfS")
+beskp <- get_playlist_audio_features("", "37i9dQZF1DXduWUvte9ZYi?")
+
+merged <- merge(beskr, beskp, all = TRUE)
+merged <- merge(merged, baba, all = TRUE)
+merged <- merged[,!names(merged) %in% c('playlist_img','playlist_owner_name',
+                                        'playlist_owner_id','playlist_id',
+                                        'track.id','added_at',
+                                        'primary_color','added_by.id',
+                                        'added_by.type','added_by.uri',
+                                        'added_by.href','added_by.external_urls.spotify',
+                                        'track.artists','track.disc_number',
+                                        'track.episode','track.is_local',
+                                        'is_local','track.href',
+                                        'track.preview_url','video_thumbnail.url',
+                                        'track.album.type','track.album.uri',
+                                        'track.external_ids.isrc','track.external_urls.spotify',
+                                        'track.album.external_urls.spotify','track.uri',
+                                        'track.track','track.type',
+                                        'track.album.href','track.album.id',
+                                        'track.album.images','track.album.total_tracks',
+                                        'track.track_number','track.available_markets',
+                                        'track.album.available_markets')]
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### PLEASE DO NOT SHOW THIS PORTFOLIO IN CLASS
 
-# A description of my corpus
+Corpus
+==================================================
 
-My corpus consists of playlists made by Spotify that revolve around the arabesk music genre. Arabesk is a popular Turkish music genre that emerged in the 1960s and blends traditional Turkish music with elements of Middle Eastern and Southeast European music. The first playlist consists of Arabesk music that is considered more old-school and classic. It's titled 'Babalar'. The second and third playlists are of subgenres of Arabesk music that emerged decades after Arabesk music arrived. The genres are Arabesk pop and Arabesk rap. Their respective playlists are "Besk Pop" and "Besk Rap".
+Column {data-width=600}
+--------------------------------------------------
+
+### A description of my corpus
+
+My corpus consists of playlists made by Spotify that revolve around the arabesk music genre. Arabesk is a popular Turkish music genre that emerged in the 1960s and blends traditional Turkish music with elements of Middle Eastern and Southeast European music.The first playlist consists of Arabesk music that is considered more old-school and classic. It's titled 'Babalar'.The second and third playlists are of subgenres of Arabesk music that emerged decades after Arabesk music arrived. The genres are Arabesk pop and Arabesk rap. Their respective playlists are "Besk Pop" and "Besk Rap".
 
 I chose this corpus, because I don't know enough about this genre and want to learn more. What's interesting about Arabesk is that it has changed tremendously throughout the years.
 
@@ -22,15 +72,81 @@ I believe that the playlists cover their genres fairly well, as Spotify has crea
 
 A typical Arabesk track could be Unutamadım (Kaç Kadeh Kırıldı) by Müslüm Gürses, due to the melancholic tone of the song. A track that could be quite atypical might be Alev Alev by Hayat, as part of it is in German and does not share the typical sentiment of older Arabesk songs. Thus, it makes sense for it to be in the Besk rap playlist.
 
-## First Visualisations
+Column {data-width=400}
+--------------------------------------------------
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX9azIhpBmNbd?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-![](https://raw.githubusercontent.com/erenkocadag/Computational_Musicology/main/Plots/acous.png)
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXduWUvte9ZYi?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-The scatter plot above plots the acousticness of the playlists on the Y-axis and the danceability of the playlists on the X-axis. This is done in three subplots for each of the playlists. When looking at the pattern of the dots, it becomes clear that classic Arabesk music tends to have a lower danceability rating and a higher acousticness rating in comparison to the two subgenres (Arabesk Pop and Arabesk Rap). This shows some of the differences of the more recent music in the subgenres in comparison to the older music.
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXciCKvzkUxfS?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-![](https://raw.githubusercontent.com/erenkocadag/Computational_Musicology/main/Plots/valence2.png)
+Acousticness and Danceability {data-navmenu=Visualisations}
+==================================================
 
-The plot above shows the mean valence for each of the playlists used. The difference between the values are actually much smaller than I expected them to be. Prior to this plot, I would have expected the classic Arabesk playlist (Babalar) to have somewhat of a lower valence than the other two playlists. Perhaps the mean was not the best property to take of the valence feature, due to its sensitivity to outliers. For next week I might come back to this with a different approach.
+Column {data-width=600}
+---------------------------------------------------
+
+### Plot 1
+
+```{r echo=FALSE}
+scatter <- ggplot(merged, aes(danceability, acousticness)) +
+  geom_point() +
+  # geom_smooth() +
+  coord_cartesian(ylim = c(0,1), xlim = c(0,1)) +
+  theme_bw() +
+  theme(
+    text = element_text(family = "Inter"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()) +
+  labs(x = "Danceability", y = "Acousticness", title = "Classic Arabesk is more acoustic and less danceable than the subgenres") +
+  facet_wrap(~playlist_name)
+
+ggplotly(scatter)
+```
+
+Column {data-width=400}
+---------------------------------------------------
+***
+* The scatter plot above plots the acousticness of the playlists on the Y-axis and the danceability of the playlists on the X-axis. This is done in three subplots for each of the playlists. When looking at the pattern of the dots, it becomes clear that classic Arabesk music tends to have a lower danceability rating and a higher acousticness rating in comparison to the two subgenres (Arabesk Pop and Arabesk Rap). This shows some of the differences of the more recent music in the subgenres in comparison to the older music.
+
+
+Valence {data-navmenu=Visualisations}
+==================================================
+
+Column {data-width=650}
+---------------------------------------------------
+### Plot 1
+
+```{r echo=FALSE}
+val <- merged %>%
+  group_by(playlist_name) %>%
+  summarize(mean_valence = mean(valence)) %>%
+  ggplot(aes(playlist_name, mean_valence, fill = playlist_name)) +
+    geom_col() +
+    geom_text(aes(label=round(mean_valence, 2)), vjust = -0.5) +
+    coord_cartesian(ylim = c(0,1)) +
+    labs(x = "Playlist", y = " Mean valence", title = "The difference in the valence of the playlists is small") +
+    theme_bw() + 
+    theme( text = element_text(family = "Inter"),
+           legend.position = 'none',
+           panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank()) +
+    scale_y_continuous(breaks=seq(0,1,1))
+
+ggplotly(val, tooltip = "text")
+```
+
+Column {data-width=350}
+---------------------------------------------------
+***
+* The plot above shows the mean valence for each of the playlists used. The difference between the values are actually much smaller than I expected them to be. Prior to this plot, I would have expected the classic Arabesk playlist (Babalar) to have somewhat of a lower valence than the other two playlists. Perhaps the mean was not the best property to take of the valence feature, due to its sensitivity to outliers. For next week I might come back to this with a different approach.
+
+Conclusion
+=================================================
+I think I need to explore my corpus a bit more and gain more insights from it before I can draw definitive conclusions.  
+
+Playlists
+=================================================
 
 ### Links to the playlists:
 
