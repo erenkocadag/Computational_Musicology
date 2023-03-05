@@ -1,0 +1,6 @@
+TODO Musicology
+- Valence beter uitvoeren
+- map artists
+- Dashboard style
+- Release jaren?
+- dont show in class weg voor einddeadline

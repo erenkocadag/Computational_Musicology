@@ -1,10 +1,13 @@
 ---
-title: "Comparisons between classic Arabesk music and some subgenres"
+title: "Arabesk and two subgenres"
 author: "Eren Kocadag"
 output: 
   flexdashboard::flex_dashboard:
           storyboard: true
           self_contained: false
+          theme:
+            version: 4
+            bootswatch: cyborg
 ---
 
 ```{r setup, include=FALSE}
@@ -55,10 +58,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #### PLEASE DO NOT SHOW THIS PORTFOLIO IN CLASS
 
 Corpus
-==================================================
-
-Column {data-width=600}
---------------------------------------------------
+=========================================================
 
 ### A description of my corpus
 
@@ -72,19 +72,27 @@ I believe that the playlists cover their genres fairly well, as Spotify has crea
 
 A typical Arabesk track could be Unutamadım (Kaç Kadeh Kırıldı) by Müslüm Gürses, due to the melancholic tone of the song. A track that could be quite atypical might be Alev Alev by Hayat, as part of it is in German and does not share the typical sentiment of older Arabesk songs. Thus, it makes sense for it to be in the Besk rap playlist.
 
-Column {data-width=400}
---------------------------------------------------
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX9azIhpBmNbd?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+As of March 5th 2023, a fourth playlist that consists of more songs was added to the corpus. This playlist has been added with the intent of increasing the amount of older Arabesk music. I wanted to increase the representation of different artists and songs in my corpus. So far it has not affected my results much, so I'm not sure if it was helpful. The playlist was mostly made by someone else, but I added a bit to it myself.
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXduWUvte9ZYi?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX9azIhpBmNbd?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXciCKvzkUxfS?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</iframe>
 
-Acousticness and Danceability {data-navmenu=Visualisations}
-==================================================
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/12VU80QKYGednqNghHrWNW?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
 
-Column {data-width=600}
----------------------------------------------------
+</iframe>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXduWUvte9ZYi?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+
+</iframe>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXciCKvzkUxfS?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+
+</iframe>
+
+# Acousticness and Danceability {data-navmenu="Visualisations"}
+
+## Column {data-width="600"}
 
 ### Plot 1
 
@@ -104,17 +112,16 @@ scatter <- ggplot(merged, aes(danceability, acousticness)) +
 ggplotly(scatter)
 ```
 
-Column {data-width=400}
----------------------------------------------------
-***
-* The scatter plot above plots the acousticness of the playlists on the Y-axis and the danceability of the playlists on the X-axis. This is done in three subplots for each of the playlists. When looking at the pattern of the dots, it becomes clear that classic Arabesk music tends to have a lower danceability rating and a higher acousticness rating in comparison to the two subgenres (Arabesk Pop and Arabesk Rap). This shows some of the differences of the more recent music in the subgenres in comparison to the older music.
+## Column {data-width="400"}
 
+------------------------------------------------------------------------
 
-Valence {data-navmenu=Visualisations}
-==================================================
+-   The scatter plot above plots the acousticness of the playlists on the Y-axis and the danceability of the playlists on the X-axis. This is done in three subplots for each of the playlists. When looking at the pattern of the dots, it becomes clear that classic Arabesk music tends to have a lower danceability rating and a higher acousticness rating in comparison to the two subgenres (Arabesk Pop and Arabesk Rap). This shows some of the differences of the more recent music in the subgenres in comparison to the older music.
 
-Column {data-width=650}
----------------------------------------------------
+# Valence {data-navmenu="Visualisations"}
+
+## Column {data-width="650"}
+
 ### Plot 1
 
 ```{r echo=FALSE}
@@ -136,49 +143,34 @@ val <- merged %>%
 ggplotly(val, tooltip = "text")
 ```
 
-Column {data-width=350}
----------------------------------------------------
-***
-* The plot above shows the mean valence for each of the playlists used. The difference between the values are actually much smaller than I expected them to be. Prior to this plot, I would have expected the classic Arabesk playlist (Babalar) to have somewhat of a lower valence than the other two playlists. Perhaps the mean was not the best property to take of the valence feature, due to its sensitivity to outliers. For next week I might come back to this with a different approach.
+## Column {data-width="350"}
 
-Popularity {data-navmenu=Visualisations}
-==================================================
+------------------------------------------------------------------------
 
-Column {data-width=500}
---------------------------------------------------
+-   The plot above shows the mean valence for each of the playlists used. The difference between the values are actually much smaller than I expected them to be. Prior to this plot, I would have expected the classic Arabesk playlist (Babalar) to have somewhat of a lower valence than the other two playlists. Perhaps the mean was not the best property to take of the valence feature, due to its sensitivity to outliers. For next week I might come back to this with a different approach.
+
+# Popularity {data-navmenu="Visualisations"}
+
+## Column {data-width="500"}
+
 ### Plot 1
-
 ```{r echo=FALSE}
-ggplot(merged, aes(tempo, track.popularity, color=playlist_name)) +
-  geom_boxplot(notch=TRUE) +
-  facet_wrap(~playlist_name) +
-  labs(x = "Tempo", y = "Track popularity", title = "Older Arabesk music currently is less popular than the subgenres") +
-  theme_bw() +
-  theme(
-    legend.position = 'none',
-    text = element_text(family = "Inter"),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank())
+fig <- plot_ly(y = merged$playlist_name, x = merged$track.popularity, type = "box", color = ~merged$playlist_name)
+fig <- fig %>% layout(title = "Older Arabesk music currently is less popular than the subgenres", xaxis = list(title="Track popularity"), yaxis = list(showticklabels=FALSE))
+
+fig
 ```
 
-Column {data-width=500}
--------------------------------------------------
-***
-* In this plot it the popularity of the tracks in each playlist are used to create boxplots. When comparing the boxplots, it becomes clear that these days the tracks from the older playlist are less popular than the subgenres which consists of newer music. Partially this makes sense, as newer music might be more relevant and perhaps is made to fit an audience of this era. However, I would have expected the "Babalar" playlist to be a bit more popular, because it contains music from artists that are highly respected in Turkey (Such as Müslüm Gürses, Orhan Gencebay and Ferdi Tayfur). When using ggplotly to make this plot web friendly, the boxplot no longer was being plotted. This is an issue I hope to resolve next week.
+### Plot 2
+TODO: Maybe give some info about some popular and less popular songs visually
+
+## Column {data-width="500"}
+
+------------------------------------------------------------------------
+
+-   In this plot it the popularity of the tracks in each playlist are used to create boxplots. When comparing the boxplots, it becomes clear that these days the tracks from the older playlist are less popular than the subgenres which consists of newer music. Partially this makes sense, as newer music might be more relevant and perhaps is made to fit an audience of this era. However, I would have expected the "Babalar" playlist to be a bit more popular, because it contains music from artists that are highly respected in Turkey (Such as Müslüm Gürses, Orhan Gencebay and Ferdi Tayfur).
 
 Conclusion
-=================================================
-I think I need to explore my corpus a bit more and gain more insights from it before I can draw definitive conclusions.  
+========================================================================
 
-Playlists
-=================================================
-
-### Links to the playlists:
-
-All data that is used in these visualisations are from the Spotify API with which I gathered information about the following playlists:
-
-[Babalar](https://open.spotify.com/playlist/37i9dQZF1DX9azIhpBmNbd?si=6db51b6addd848c0)
-
-[Besk Pop](https://open.spotify.com/playlist/37i9dQZF1DXduWUvte9ZYi?si=81f7a3ba11a4430b)
-
-[Besk Rap](https://open.spotify.com/playlist/37i9dQZF1DXciCKvzkUxfS?si=c9b1a17357b9411d)
+I think I need to explore my corpus a bit more and gain more insights from it before I can draw definitive conclusions.
