@@ -64,9 +64,9 @@ Findings Homework 9
 ## Column {data-width="600"}
 
 ### Plot 1
-```{r}
-![](path-to-image-here)
-```
+
+![](nilufer.png)
+
 ### Plot 2
 ```{r echo=FALSE}
 muslum2 <-
