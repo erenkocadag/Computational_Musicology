@@ -116,21 +116,76 @@ muslum <-
       )
   )
 
-chroma1 <- muslum |>
-  compmus_gather_timbre() |>
+muslum <-
+  get_tidy_audio_analysis("4cHrCNJTdMfbtY0fjc5ged") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+
+
+gripin <-
+  get_tidy_audio_analysis("2SGw7SCQWp1vdTAqiy9LnZ") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+
+chroma1 <- compmus_long_distance(
+  muslum |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  gripin |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  feature = pitches,
+  method = "manhattan"
+) |>
   ggplot(
     aes(
-      x = start + duration / 2,
-      width = duration,
-      y = basis,
-      fill = value
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
     )
   ) +
   geom_tile() +
-  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
-  scale_fill_viridis_c() +                              
-  theme_classic()
+  coord_equal() +
+  labs(x = "Müslüm Gürses", y = "Gripin", title = "Distance Matrix of the pitches of the song \'Nilüfer\'") +
+  theme_minimal() +
+  scale_fill_viridis_c(guide = NULL)
+
+muslum2 <-
+  get_tidy_audio_analysis("4cHrCNJTdMfbtY0fjc5ged") |> # Change URI.
+  compmus_align(bars, segments) |>                     # Change `bars`
+  select(bars) |>                                      #   in all three
+  unnest(bars) |>                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+          compmus_summarise, timbre,
+          method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+timb <- muslum2 |>
+  compmus_self_similarity(timbre, "cosine") |> 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(title = "Self similarity Matrix of the timbre of Müslüm\'s Nilüfer") +
+  labs(x = "", y = "")
 
 
-#ggplotly(chroma1)
-         
+ggplotly(timb)

@@ -17,6 +17,7 @@ library(spotifyr)
 library(ggplot2)
 library(showtext)
 library(plotly)
+library(compmus)
 
 # getting access to the spotify API
 Sys.setenv(SPOTIFY_CLIENT_ID = 'c165e1d0717c4bc1a4b10fad65d016e5')
@@ -56,6 +57,64 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### PLEASE DO NOT SHOW THIS PORTFOLIO IN CLASS
+
+Findings Homework 9
+=========================================================
+
+## Column {data-width="600"}
+
+### Plot 1
+```{r}
+![](path-to-image-here)
+```
+### Plot 2
+```{r echo=FALSE}
+muslum2 <-
+  get_tidy_audio_analysis("4cHrCNJTdMfbtY0fjc5ged") |> # Change URI.
+  compmus_align(bars, segments) |>                     # Change `bars`
+  select(bars) |>                                      #   in all three
+  unnest(bars) |>                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+          compmus_summarise, timbre,
+          method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+timb <- muslum2 |>
+  compmus_self_similarity(timbre, "cosine") |> 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(title = "Self similarity Matrix of the timbre of Müslüm\'s Nilüfer") +
+  labs(x = "", y = "")
+
+ggplotly(timb)
+```
+## Column {data-width="400"}
+***
+* NOTE: For some reason this first plot caused my html file to be over 100mb, which Github did not like. So for now I just uploaded an image instead of using my R. Next week I'll try to find a fix.
+
+* In the first plot we see a distance matrix of the pitches of the song "Nilüfer", performed originally by Müslüm Gürses in 2006. 15 years later, Rock band Gripin released their own version of this song. Even though, Gripin's variant of this song is not in my corpus, I felt like it would be interesting to make this distance matrix between these two recordings. Müslüm Gürses is one of the biggest names in the arabesk genre and his song "Nilüfer" is one of his biggest hits, despite it being one of his later releases. Personally, I listen to the original more often than I listen to Gripin's verison, but I do not mind Gripin's version of the song either. Other interesting distance matrices could be made with other songs that came from the 2006 album "Aşk Tesadüfleri Sever", as it contains a lot of songs of which instrumentals are taken from popular non-Turkish music. Nilüfer is not one of those songs. Now to get to my actual analysis of the matrix, I struggle to see a cost-minimizing alignment path that could be created through dynamic time warping. This could be a fun task for next week. Initially, I expected the songs to have some differences in their pitches, but I'm not entirely sure if my matrix confirms or denies this.
+
+* In the second plot a self similarity matrix of the timbre of Müslüm's Nilüfer can be seen. Generally, to me it seems like the distances between timbre at different moments are not very large. This would suggest that this song in particular has some structure to it. I also wanted to plot a chroma-based self-similarity matrix in this position, but could not get it to work. For next week, I should look at implementing subplots to make this work.
 
 Corpus
 =========================================================
