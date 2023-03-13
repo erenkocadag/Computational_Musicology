@@ -188,6 +188,8 @@ ggplotly(haydi2)
 
 ### More visualisations?
 
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3XTzXWtABSuYqAvOso5YP9?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
 ## Column {data-width="400"}
 ***
 * Continuing with iconic songs of Müslüm Gürses, this week I made a chordogram of his song 'Seni Yazdım'. Just like Nilüfer, Seni Yazdım is one of Müslüm's biggest hits. However, in contrast to Nilüfer, Seni Yazdım might be more a of a typical arabesk song. First I looked at the keys of the song, but then came to the conclusion that a chordogram gave me more valuable insights about how the song is structured..
