@@ -186,15 +186,14 @@ haydi2 <- haydi |>
 ggplotly(haydi2)
 ```
 
-### More visualisations?
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3XTzXWtABSuYqAvOso5YP9?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 ## Column {data-width="400"}
 ***
 * Continuing with iconic songs of Müslüm Gürses, this week I made a chordogram of his song 'Seni Yazdım'. Just like Nilüfer, Seni Yazdım is one of Müslüm's biggest hits. However, in contrast to Nilüfer, Seni Yazdım might be more a of a typical arabesk song. First I looked at the keys of the song, but then came to the conclusion that a chordogram gave me more valuable insights about how the song is structured..
 
 * In the graph, the magnitude of a chord is higher when it is more blue instead of yellow. Knowing this, it becomes clear that the most prominent chords in the song are 7th chords. Personally, I think that Seni Yazdım is a song that stands out in Müslüm's discography. It has a unique sound, whilst still staying close to the arabesk genre. This may be due to the 7th chords, which might add some color and richness to the harmonies, but could also be used to create tension if the chord is dominant. When I listen to the song, I get the feeling that the chords fulfill both of those purposes. That tension in particular is something that I feel right before the chorus. Despite all of this, the most important use of these chords is to convey the emotions that the artist feels. The lyrics convey that there is some person that the artist loved and does not see anymore. The chords complement these lyrics well.
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3XTzXWtABSuYqAvOso5YP9?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 
 Corpus
