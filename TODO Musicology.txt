@@ -1,5 +1,5 @@
 TODO Musicology
-- Valence beter uitvoeren
+- Valence beter uitvoeren (categoriseren?) ylab("proportion")? of facet
 - map artists
 - Dashboard style
 - Release jaren?
