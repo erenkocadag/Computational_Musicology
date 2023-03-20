@@ -1,6 +1,9 @@
 TODO Musicology
+- file size + sneller runnen
+-filmpje? linkies? (Achtergrondinfo ontstaan/culterele invloed arabesk, Muslum)
 - Valence beter uitvoeren (categoriseren?) ylab("proportion")? of facet
+-hist keys 
 - map artists
 - Dashboard style
-- Release jaren?
+- Müslüm tempogram?
 - dont show in class weg voor einddeadline

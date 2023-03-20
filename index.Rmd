@@ -37,6 +37,7 @@ beskp <- get_playlist_audio_features("", "37i9dQZF1DXduWUvte9ZYi?")
 # merging the playlists and other preprocessing
 eski <- mutate(eski, playlist_name = "Arabesk")
 baba <- mutate(baba, playlist_name = "Arabesk")
+old <- merge(eski, baba, all = TRUE)
 merged <- merge(beskr, beskp, all = TRUE)
 merged <- merge(merged, baba, all = TRUE)
 merged <- merge(merged, eski, all = TRUE)
@@ -63,10 +64,210 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### PLEASE DO NOT SHOW THIS PORTFOLIO IN CLASS
 
-Seni Yazdım
+Tempo
 =========================================================
 
-## Column {data-width="600"}
+## Column {data-width="700"}
+
+### Plot 1
+
+```{r echo=FALSE}
+templot2 <- subplot(plot_ly(x = old$tempo, type = "histogram", histnorm = "probability",nbinsx = (max(old$tempo) - min(old$tempo))/10, xbins = list(size = 10), name = "Arabesk"),
+                    plot_ly(x = beskp$tempo, type = "histogram", histnorm = "probability",nbinsx = (max(beskp$tempo) - min(beskp$tempo))/10, xbins = list(size = 10), name = "Besk Pop"),
+                    plot_ly(x = beskr$tempo, type = "histogram", histnorm = "probability",nbinsx = (max(beskr$tempo) - min(beskr$tempo))/10, xbins = list(size = 10), name = "Besk Rap")
+                    ) %>% 
+  layout(title = "Tempo proportions of Arabesk music and its subgenres")
+
+templot2
+```
+
+
+## Column {data-width="300"}
+***
+* A reason why traditional Arabesk music sounds a bit different than Besk Pop and Besk Rap to me, could partially be due to differences in the tempo of the songs. In order to check whether my intuition was correct or not, I decided to make histograms of the tempi of each genre. The Y-axis of the histograms represents the proportion of songs in my corpus of that genre that have a certain BPM range, rather than the amount of occurrences of each range of tempo in their respective genre. To elaborate, if a BPM range of 90 to 100 is mapped to a value of 0.1 on the Y-axis, this means that about 10% of the songs in my corpus of that genre have a BPM range of 90 to 100.
+
+* Looking at this histogram, it becomes clear that the mode in each histogram is the same. This is a BPM in between 90 and 100. However, there also are some differences. For example, it becomes clear that songs in the range of 110 and 130 BPM are more common in the subgenres than in Arabesk music. In the Arabesk songs they account for about 15% of the songs. In the other two genres this is about 23% to 24%. Besides this, I also noticed that songs in the range of 140 to 150 BPM take up twice as much room in the playlists of the subgenre than the playlists of Arabesk music.
+
+* To me, whether this confirms or denies my intuition is a bit unclear. I notice a different pattern in the histogram of Arabesk music in comparison to its genres, but I am left wondering to what extent that impacts my experience in the cases that I happen to listen to this music. I do think that if these histograms were more similar, the genres would be experienced in a more similar way, but there also are a lot of confounders that determine how different the subgenres are from Arabesk music. Some of those confounders can be found in other visualisations of my portfolio.
+
+* To add more visualisations about Tempo, an idea I have is to analyze more of Müslüm Gürses's music through their tempo, as I feel like I could tell some story with it.
+
+
+Corpus
+=========================================================
+
+### A description of my corpus
+
+My corpus consists of playlists made by Spotify that revolve around the arabesk music genre. Arabesk is a popular Turkish music genre that emerged in the 1960s and blends traditional Turkish music with elements of Middle Eastern and Southeast European music.The first playlist consists of Arabesk music that is considered more old-school and classic. It's titled 'Babalar'.The second and third playlists are of subgenres of Arabesk music that emerged decades after Arabesk music arrived. The genres are Arabesk pop and Arabesk rap. Their respective playlists are "Besk Pop" and "Besk Rap".
+
+I chose this corpus, because I don't know enough about this genre and want to learn more. What's interesting about Arabesk is that it has changed tremendously throughout the years.
+
+My main interest of points to compare are how the chosen subgenres are similar or different to classic Arabesk music. It could also be interesting to see the differences between songs from each decade.
+
+I believe that the playlists cover their genres fairly well, as Spotify has created them with the purpose of doing so. A strength would be the variety in artists that are featured in the playlists. A weakness could be the size of the corpus.
+
+A typical Arabesk track could be Unutamadım (Kaç Kadeh Kırıldı) by Müslüm Gürses, due to the melancholic tone of the song. A track that could be quite atypical might be Alev Alev by Hayat, as part of it is in German and does not share the typical sentiment of older Arabesk songs. Thus, it makes sense for it to be in the Besk rap playlist.
+
+As of March 5th 2023, a fourth playlist that consists of more songs was added to the corpus. This playlist has been added with the intent of increasing the amount of older Arabesk music. I wanted to increase the representation of different artists and songs in my corpus. So far it has not affected my results much, so I'm not sure if it was helpful. The playlist was mostly made by someone else, but I added a bit to it myself.
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX9azIhpBmNbd?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+
+</iframe>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/12VU80QKYGednqNghHrWNW?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+
+</iframe>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXduWUvte9ZYi?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+
+</iframe>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXciCKvzkUxfS?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+
+</iframe>
+
+# Acousticness and Danceability {data-navmenu="Visualisations"}
+
+## Column {data-width="700"}
+
+### Plot 1
+
+```{r echo=FALSE}
+scatter <- ggplot(merged, aes(danceability, acousticness)) +
+  geom_point() +
+  # geom_smooth() +
+  coord_cartesian(ylim = c(0,1), xlim = c(0,1)) +
+  theme_bw() +
+  theme(
+    text = element_text(family = "Inter"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()) +
+  labs(x = "Danceability", y = "Acousticness", title = "Classic Arabesk is more acoustic and less danceable than the subgenres") +
+  facet_wrap(~playlist_name)
+
+ggplotly(scatter)
+```
+
+## Column {data-width="300"}
+
+------------------------------------------------------------------------
+
+-   The scatter plot above plots the acousticness of the playlists on the Y-axis and the danceability of the playlists on the X-axis. This is done in three subplots for each of the playlists. When looking at the pattern of the dots, it becomes clear that classic Arabesk music tends to have a lower danceability rating and a higher acousticness rating in comparison to the two subgenres (Arabesk Pop and Arabesk Rap). This shows some of the differences of the more recent music in the subgenres in comparison to the older music.
+
+# Valence {data-navmenu="Visualisations"}
+
+## Column {data-width="700"}
+
+### Plot 1
+
+```{r echo=FALSE}
+val <- merged %>%
+  group_by(playlist_name) %>%
+  summarize(mean_valence = mean(valence)) %>%
+  ggplot(aes(playlist_name, mean_valence, fill = playlist_name)) +
+    geom_col() +
+    geom_text(aes(label=round(mean_valence, 2)), vjust = -0.5) +
+    coord_cartesian(ylim = c(0,1)) +
+    labs(x = "Playlist", y = " Mean valence", title = "The difference in the valence of the playlists is small") +
+    theme_bw() + 
+    theme( text = element_text(family = "Inter"),
+           legend.position = 'none',
+           panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank()) +
+    scale_y_continuous(breaks=seq(0,1,1))
+
+ggplotly(val, tooltip = "text")
+```
+
+## Column {data-width="300"}
+
+------------------------------------------------------------------------
+
+-   The plot above shows the mean valence for each of the playlists used. The difference between the values are actually much smaller than I expected them to be. Prior to this plot, I would have expected the classic Arabesk playlist (Babalar) to have somewhat of a lower valence than the other two playlists. Perhaps the mean was not the best property to take of the valence feature, due to its sensitivity to outliers. For next week I might come back to this with a different approach.
+
+# Popularity {data-navmenu="Visualisations"}
+
+## Column {data-width="700"}
+
+### Plot 1
+```{r echo=FALSE}
+fig <- plot_ly(y = merged$playlist_name, x = merged$track.popularity, type = "box", color = ~merged$playlist_name)
+fig <- fig %>% layout(title = "Older Arabesk music currently is less popular than the subgenres", xaxis = list(title="Track popularity"), yaxis = list(showticklabels=FALSE))
+
+fig
+```
+
+### Plot 2
+TODO: Maybe give some info about some popular and less popular songs visually
+
+## Column {data-width="300"}
+
+------------------------------------------------------------------------
+
+-   In this plot it the popularity of the tracks in each playlist are used to create boxplots. When comparing the boxplots, it becomes clear that these days the tracks from the older playlist are less popular than the subgenres which consists of newer music. Partially this makes sense, as newer music might be more relevant and perhaps is made to fit an audience of this era. However, I would have expected the "Babalar" playlist to be a bit more popular, because it contains music from artists that are highly respected in Turkey (Such as Müslüm Gürses, Orhan Gencebay and Ferdi Tayfur).
+
+# Nilüfer {data-navmenu="Visualisations"}
+
+
+## Column {data-width="700"}
+
+### Plot 1
+
+![](nilufer.png)
+
+### Plot 2
+```{r echo=FALSE}
+muslum2 <-
+  get_tidy_audio_analysis("4cHrCNJTdMfbtY0fjc5ged") |> # Change URI.
+  compmus_align(bars, segments) |>                     # Change `bars`
+  select(bars) |>                                      #   in all three
+  unnest(bars) |>                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+          compmus_summarise, timbre,
+          method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+timb <- muslum2 |>
+  compmus_self_similarity(timbre, "cosine") |> 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(title = "Self similarity Matrix of the timbre of Müslüm\'s Nilüfer") +
+  labs(x = "", y = "")
+
+ggplotly(timb)
+```
+## Column {data-width="300"}
+***
+* NOTE: For some reason this first plot caused my html file to be over 100mb, which Github did not like. So for now I just uploaded an image instead of using my R. Next week I'll try to find a fix.
+
+* In the first plot we see a distance matrix of the pitches of the song "Nilüfer", performed originally by Müslüm Gürses in 2006. 15 years later, Rock band Gripin released their own version of this song. Even though, Gripin's variant of this song is not in my corpus, I felt like it would be interesting to make this distance matrix between these two recordings. Müslüm Gürses is one of the biggest names in the arabesk genre and his song "Nilüfer" is one of his biggest hits, despite it being one of his later releases. Personally, I listen to the original more often than I listen to Gripin's verison, but I do not mind Gripin's version of the song either. Other interesting distance matrices could be made with other songs that came from the 2006 album "Aşk Tesadüfleri Sever", as it contains a lot of songs of which instrumentals are taken from popular non-Turkish music. Nilüfer is not one of those songs. Now to get to my actual analysis of the matrix, I struggle to see a cost-minimizing alignment path that could be created through dynamic time warping. This could be a fun task for next week. Initially, I expected the songs to have some differences in their pitches, but I'm not entirely sure if my matrix confirms or denies this.
+
+* In the second plot a self similarity matrix of the timbre of Müslüm's Nilüfer can be seen. Generally, to me it seems like the distances between timbre at different moments are not very large. This would suggest that this song in particular has some structure to it. I also wanted to plot a chroma-based self-similarity matrix in this position, but could not get it to work. For next week, I should look at implementing subplots to make this work.
+
+Seni Yazdım {data-navmenu="Visualisations"}
+=========================================================
+
+## Column {data-width="700"}
 
 ### Plot 1
 
@@ -187,7 +388,7 @@ ggplotly(haydi2)
 ```
 
 
-## Column {data-width="400"}
+## Column {data-width="300"}
 ***
 * Continuing with iconic songs of Müslüm Gürses, this week I made a chordogram of his song 'Seni Yazdım'. Just like Nilüfer, Seni Yazdım is one of Müslüm's biggest hits. However, in contrast to Nilüfer, Seni Yazdım might be more a of a typical arabesk song. First I looked at the keys of the song, but then came to the conclusion that a chordogram gave me more valuable insights about how the song is structured..
 
@@ -195,177 +396,6 @@ ggplotly(haydi2)
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3XTzXWtABSuYqAvOso5YP9?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-
-Corpus
-=========================================================
-
-### A description of my corpus
-
-My corpus consists of playlists made by Spotify that revolve around the arabesk music genre. Arabesk is a popular Turkish music genre that emerged in the 1960s and blends traditional Turkish music with elements of Middle Eastern and Southeast European music.The first playlist consists of Arabesk music that is considered more old-school and classic. It's titled 'Babalar'.The second and third playlists are of subgenres of Arabesk music that emerged decades after Arabesk music arrived. The genres are Arabesk pop and Arabesk rap. Their respective playlists are "Besk Pop" and "Besk Rap".
-
-I chose this corpus, because I don't know enough about this genre and want to learn more. What's interesting about Arabesk is that it has changed tremendously throughout the years.
-
-My main interest of points to compare are how the chosen subgenres are similar or different to classic Arabesk music. It could also be interesting to see the differences between songs from each decade.
-
-I believe that the playlists cover their genres fairly well, as Spotify has created them with the purpose of doing so. A strength would be the variety in artists that are featured in the playlists. A weakness could be the size of the corpus.
-
-A typical Arabesk track could be Unutamadım (Kaç Kadeh Kırıldı) by Müslüm Gürses, due to the melancholic tone of the song. A track that could be quite atypical might be Alev Alev by Hayat, as part of it is in German and does not share the typical sentiment of older Arabesk songs. Thus, it makes sense for it to be in the Besk rap playlist.
-
-As of March 5th 2023, a fourth playlist that consists of more songs was added to the corpus. This playlist has been added with the intent of increasing the amount of older Arabesk music. I wanted to increase the representation of different artists and songs in my corpus. So far it has not affected my results much, so I'm not sure if it was helpful. The playlist was mostly made by someone else, but I added a bit to it myself.
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX9azIhpBmNbd?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
-
-</iframe>
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/12VU80QKYGednqNghHrWNW?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
-
-</iframe>
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXduWUvte9ZYi?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
-
-</iframe>
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXciCKvzkUxfS?utm_source=generator&amp;theme=0" width="100%" height="176" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
-
-</iframe>
-
-# Acousticness and Danceability {data-navmenu="Visualisations"}
-
-## Column {data-width="600"}
-
-### Plot 1
-
-```{r echo=FALSE}
-scatter <- ggplot(merged, aes(danceability, acousticness)) +
-  geom_point() +
-  # geom_smooth() +
-  coord_cartesian(ylim = c(0,1), xlim = c(0,1)) +
-  theme_bw() +
-  theme(
-    text = element_text(family = "Inter"),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank()) +
-  labs(x = "Danceability", y = "Acousticness", title = "Classic Arabesk is more acoustic and less danceable than the subgenres") +
-  facet_wrap(~playlist_name)
-
-ggplotly(scatter)
-```
-
-## Column {data-width="400"}
-
-------------------------------------------------------------------------
-
--   The scatter plot above plots the acousticness of the playlists on the Y-axis and the danceability of the playlists on the X-axis. This is done in three subplots for each of the playlists. When looking at the pattern of the dots, it becomes clear that classic Arabesk music tends to have a lower danceability rating and a higher acousticness rating in comparison to the two subgenres (Arabesk Pop and Arabesk Rap). This shows some of the differences of the more recent music in the subgenres in comparison to the older music.
-
-# Valence {data-navmenu="Visualisations"}
-
-## Column {data-width="650"}
-
-### Plot 1
-
-```{r echo=FALSE}
-val <- merged %>%
-  group_by(playlist_name) %>%
-  summarize(mean_valence = mean(valence)) %>%
-  ggplot(aes(playlist_name, mean_valence, fill = playlist_name)) +
-    geom_col() +
-    geom_text(aes(label=round(mean_valence, 2)), vjust = -0.5) +
-    coord_cartesian(ylim = c(0,1)) +
-    labs(x = "Playlist", y = " Mean valence", title = "The difference in the valence of the playlists is small") +
-    theme_bw() + 
-    theme( text = element_text(family = "Inter"),
-           legend.position = 'none',
-           panel.grid.major = element_blank(),
-           panel.grid.minor = element_blank()) +
-    scale_y_continuous(breaks=seq(0,1,1))
-
-ggplotly(val, tooltip = "text")
-```
-
-## Column {data-width="350"}
-
-------------------------------------------------------------------------
-
--   The plot above shows the mean valence for each of the playlists used. The difference between the values are actually much smaller than I expected them to be. Prior to this plot, I would have expected the classic Arabesk playlist (Babalar) to have somewhat of a lower valence than the other two playlists. Perhaps the mean was not the best property to take of the valence feature, due to its sensitivity to outliers. For next week I might come back to this with a different approach.
-
-# Popularity {data-navmenu="Visualisations"}
-
-## Column {data-width="500"}
-
-### Plot 1
-```{r echo=FALSE}
-fig <- plot_ly(y = merged$playlist_name, x = merged$track.popularity, type = "box", color = ~merged$playlist_name)
-fig <- fig %>% layout(title = "Older Arabesk music currently is less popular than the subgenres", xaxis = list(title="Track popularity"), yaxis = list(showticklabels=FALSE))
-
-fig
-```
-
-### Plot 2
-TODO: Maybe give some info about some popular and less popular songs visually
-
-## Column {data-width="500"}
-
-------------------------------------------------------------------------
-
--   In this plot it the popularity of the tracks in each playlist are used to create boxplots. When comparing the boxplots, it becomes clear that these days the tracks from the older playlist are less popular than the subgenres which consists of newer music. Partially this makes sense, as newer music might be more relevant and perhaps is made to fit an audience of this era. However, I would have expected the "Babalar" playlist to be a bit more popular, because it contains music from artists that are highly respected in Turkey (Such as Müslüm Gürses, Orhan Gencebay and Ferdi Tayfur).
-
-# Nilüfer {data-navmenu="Visualisations"}
-
-
-## Column {data-width="600"}
-
-### Plot 1
-
-![](nilufer.png)
-
-### Plot 2
-```{r echo=FALSE}
-muslum2 <-
-  get_tidy_audio_analysis("4cHrCNJTdMfbtY0fjc5ged") |> # Change URI.
-  compmus_align(bars, segments) |>                     # Change `bars`
-  select(bars) |>                                      #   in all three
-  unnest(bars) |>                                      #   of these lines.
-  mutate(
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "rms", norm = "euclidean"              # Change summary & norm.
-      )
-  ) |>
-  mutate(
-    timbre =
-      map(segments,
-          compmus_summarise, timbre,
-          method = "rms", norm = "euclidean"              # Change summary & norm.
-      )
-  )
-timb <- muslum2 |>
-  compmus_self_similarity(timbre, "cosine") |> 
-  ggplot(
-    aes(
-      x = xstart + xduration / 2,
-      width = xduration,
-      y = ystart + yduration / 2,
-      height = yduration,
-      fill = d
-    )
-  ) +
-  geom_tile() +
-  coord_fixed() +
-  scale_fill_viridis_c(guide = "none") +
-  theme_classic() +
-  labs(title = "Self similarity Matrix of the timbre of Müslüm\'s Nilüfer") +
-  labs(x = "", y = "")
-
-ggplotly(timb)
-```
-## Column {data-width="400"}
-***
-* NOTE: For some reason this first plot caused my html file to be over 100mb, which Github did not like. So for now I just uploaded an image instead of using my R. Next week I'll try to find a fix.
-
-* In the first plot we see a distance matrix of the pitches of the song "Nilüfer", performed originally by Müslüm Gürses in 2006. 15 years later, Rock band Gripin released their own version of this song. Even though, Gripin's variant of this song is not in my corpus, I felt like it would be interesting to make this distance matrix between these two recordings. Müslüm Gürses is one of the biggest names in the arabesk genre and his song "Nilüfer" is one of his biggest hits, despite it being one of his later releases. Personally, I listen to the original more often than I listen to Gripin's verison, but I do not mind Gripin's version of the song either. Other interesting distance matrices could be made with other songs that came from the 2006 album "Aşk Tesadüfleri Sever", as it contains a lot of songs of which instrumentals are taken from popular non-Turkish music. Nilüfer is not one of those songs. Now to get to my actual analysis of the matrix, I struggle to see a cost-minimizing alignment path that could be created through dynamic time warping. This could be a fun task for next week. Initially, I expected the songs to have some differences in their pitches, but I'm not entirely sure if my matrix confirms or denies this.
-
-* In the second plot a self similarity matrix of the timbre of Müslüm's Nilüfer can be seen. Generally, to me it seems like the distances between timbre at different moments are not very large. This would suggest that this song in particular has some structure to it. I also wanted to plot a chroma-based self-similarity matrix in this position, but could not get it to work. For next week, I should look at implementing subplots to make this work.
 
 Conclusion
 ========================================================================

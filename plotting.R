@@ -24,6 +24,7 @@ beskp <- get_playlist_audio_features("", "37i9dQZF1DXduWUvte9ZYi?")
 # merging the playlists and other preprocessing
 eski <- mutate(eski, playlist_name = "Arabesk")
 baba <- mutate(baba, playlist_name = "Arabesk")
+old <- merge(eski, baba, all = TRUE)
 merged <- merge(beskr, beskp, all = TRUE)
 merged <- merge(merged, baba, all = TRUE)
 merged <- merge(merged, eski, all = TRUE)
@@ -62,7 +63,7 @@ val <- merged %>%
            panel.grid.minor = element_blank()) +
     scale_y_continuous(breaks=seq(0,1,1))
 
-ggplotly(val)
+# ggplotly(val)
 
 scatter <- ggplot(merged, aes(danceability, acousticness)) +
   geom_point() +
@@ -76,7 +77,7 @@ scatter <- ggplot(merged, aes(danceability, acousticness)) +
   labs(x = "Danceability", y = "Acousticness", title = "Classic Arabesk songs seem to be more acoustic and less danceable than the two subgenres") +
   facet_wrap(~playlist_name)
 
-ggplotly(scatter)
+# ggplotly(scatter)
 
 
 pop <- ggplot(merged, aes(tempo, track.popularity, color=playlist_name)) +
@@ -299,4 +300,13 @@ haydi2 <- haydi |>
   scale_fill_viridis_c(guide = "none") +
   theme_minimal() +
   labs(x = "Time (s)", y = "", title = "Chordogram of Seni Yazdım")
-ggplotly(haydi2)
+
+
+
+templot2 <- subplot(plot_ly(x = old$tempo, type = "histogram", histnorm = "probability",nbinsx = (max(old$tempo) - min(old$tempo))/10, xbins = list(size = 10), name = "Arabesk"),
+                    plot_ly(x = beskp$tempo, type = "histogram", histnorm = "probability",nbinsx = (max(beskp$tempo) - min(beskp$tempo))/10, xbins = list(size = 10), name = "Besk Pop"),
+                    plot_ly(x = beskr$tempo, type = "histogram", histnorm = "probability",nbinsx = (max(beskr$tempo) - min(beskr$tempo))/10, xbins = list(size = 10), name = "Besk Rap")
+                    ) %>% 
+  layout(title = "Tempo proportions of Arabesk music and its subgenres")
+
+templot2
