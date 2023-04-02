@@ -47,6 +47,32 @@ merged <- merged[,!names(merged) %in% c('playlist_img','playlist_owner_name',
                                         'track.track_number','track.available_markets',
                                         'track.album.available_markets')]
 
+artist_features <- get_artist_audio_features("4cMwyqmHCwJjRZ3frIVHTr")
+
+clusters <- kmeans(merged[, c("danceability", "acousticness", "tempo", "loudness", "energy", "track.popularity")], centers = 3)
+
+clu <- ggplot(merged, aes(x = danceability, y = acousticness, color = factor(clusters$cluster), shape = playlist_name)) +
+  geom_point() +
+  scale_color_manual(values = c("#F8766D", "#00BFC4", "#7CAE00")) +
+  labs(title = "Clustered Tracks in My Playlist",
+       x = "Danceability",
+       y = "Acousticness",
+       color = "Cluster") +
+  theme_bw() + 
+  theme( text = element_text(family = "Inter"),
+         panel.grid.major = element_blank(),
+         panel.grid.minor = element_blank())
+
+ggplotly(clu)
+
+loud <- ggplot(artist_features, aes(x = loudness)) + 
+  geom_density() +
+  labs(y = "Density", x = "Loudness (dB)") +
+  ggtitle(paste("Distribution of Loudness"))
+
+loudly <- ggplotly(loud)
+loudly
+
 # the actual plotting
 val <- merged %>%
   group_by(playlist_name) %>%
@@ -62,6 +88,11 @@ val <- merged %>%
            panel.grid.major = element_blank(),
            panel.grid.minor = element_blank()) +
     scale_y_continuous(breaks=seq(0,1,1))
+
+boxx <- plot_ly(y = merged$playlist_name, x = merged$valence, type = "box", color = ~merged$playlist_name)
+boxx <- boxx %>% layout(title = "The valence of the playlist does not differ greatly", xaxis = list(title="Valence"), yaxis = list(showticklabels=FALSE))
+
+boxx
 
 # ggplotly(val)
 
