@@ -1,6 +1,4 @@
 TODO Musicology
 
-- Loudness
-- Timbre
 - Clustering/Regression
 - Contribution
